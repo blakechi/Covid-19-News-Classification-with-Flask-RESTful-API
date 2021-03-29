@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The objective is to classify Covid-19 related news into hierarchical classes defined from [Oxford Covid-19 Government Response Tracker](https://github.com/OxCGRT/covid-policy-tracker/blob/master/documentation/codebook.md#containment-and-closure-policies). We use Google Colaboratory for training.
+The objective is to classify Covid-19 related news into hierarchical classes defined from [Oxford Covid-19 Government Response Tracker](https://github.com/OxCGRT/covid-policy-tracker/blob/master/documentation/codebook.md#containment-and-closure-policies). We use **Google Colaboratory** for training.
 
 ## Method
 

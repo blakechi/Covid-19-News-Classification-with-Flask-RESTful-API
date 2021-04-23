@@ -41,9 +41,10 @@ def classify():
             config.labels_to_indice, 
             config.output_template, 
             config.top_class, 
-            config.sub_class
+            config.sub_class,
+            config.temperature
         )
-        
+
         data["id"] = news["id"]
         data["prediction"] = prediction
         data["too_long"] = True if len(summary) > MAX_LENGTH else False

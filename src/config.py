@@ -144,6 +144,8 @@ output_template[0]['children'].append(
     }
 )
 
+# A hyperparametor for the softmax at the output
+temperature = 0.1
 
 if __name__ == "__main__":
     import json

@@ -72,7 +72,7 @@ top_hypothesis = functools.reduce(lambda a, b: a + b, top_class_to_hypothesis.va
 sub_hypothesis = functools.reduce(lambda a, b: a + b, sub_class_to_hypothesis.values())
 
 #
-candidate_labels = top_hypothesis + sub_hypothesis
+hypothesis_candidate = top_hypothesis + sub_hypothesis
 
 #
 labels_to_indice = { label: idx for idx, label in enumerate(top_hypothesis) }
@@ -93,53 +93,53 @@ sub_class = [
     [
         "School Closing",
         "Workplace Closing",
-        "Cancel Public Events",
+        "Public Event Cancellation",
         "Restrictions on Gatherings",
-        "Close Public Transport",
+        "Public Transport Closing",
         "Stay at Home Requirements",
-        'Restrictions on internel movement', 
-        'International travel control'
+        'Restrictions on Internel Movement', 
+        'International Travel Control'
     ],
     [
         "Income Support",
-        "Debt/Contract Relief",
-        "Fiscal Measures",
-        "International Suport",
+        "Debt or Contract Relief",
+        "Fiscal Measurements",
+        "International Suport in the Pandemic",
     ],
     [
-        "Public Info Campaigns",
+        "Public Health Campaigns",
         "Testing Policy",
-        "Contract Tracing",
-        "Emergency Investment",
-        "Vaccine Investment",
+        "Contact Tracing",
+        "Emergency Investment in Health Care",
+        "Investment in Vaccines",
         "Facial Coverings",
-        "Vaccination Policy",
+        "Vaccination Policy in the Pandemic",
     ]
 ]
 
 #
 output_template = [
     {
-        'event': 'root',
+        'class': 'root',
         'children': [
             {
-                'event': top_event_name,
+                'class': top_class_name,
                 'percentage': 0,
                 'children': [
                     {
-                        'event': sub_event_name,
+                        'class': sub_class_name,
                         'percentage': 0
                     }
-                    for sub_event_name in sub_class[top_idx]
+                    for sub_class_name in sub_class[top_idx]
                 ]
             }
-            for top_idx, top_event_name in enumerate(top_class) if top_idx < 3
+            for top_idx, top_class_name in enumerate(top_class) if top_idx < 3
         ],
     }
 ]
 output_template[0]['children'].append(
     {
-        'event': "Misc Policies",
+        'class': "Miscellaneous Policies",
         'percentage': 0,
     }
 )
@@ -147,7 +147,11 @@ output_template[0]['children'].append(
 # A hyperparametor for the softmax at the output
 temperature = 0.1
 
+
 if __name__ == "__main__":
     import json
     
+    
+    print(json.dumps(hypothesis_candidate, indent=4))
     print(json.dumps(labels_to_indice, indent=4))
+    print(json.dumps(output_template, indent=4))

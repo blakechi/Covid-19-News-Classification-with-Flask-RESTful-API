@@ -3,7 +3,7 @@
 """
 import os
 import sys
-import math
+import warnings
 
 from flask import Flask, jsonify, request
 
@@ -15,7 +15,7 @@ from utils import format_output
 
 
 MAX_LENGTH = 1024
-DEVICE = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
+DEVICEIDX = 0 if torch.cuda.is_available() else -1
 classifier = None
 app = Flask(__name__)
 
@@ -31,8 +31,8 @@ def classify():
 
         prediction = classifier(
             summary, 
-            candidate_labels, 
-            hypothesis_template, 
+            config.hypothesis_candidate, 
+            config.hypothesis_template, 
             multi_class=True,
         )
 
@@ -55,25 +55,23 @@ def classify():
 
 def load_model(model_path):
     global classifier
+    
     classifier = pipeline(
         'zero-shot-classification',
         tokenizer='facebook/bart-large-mnli',
         model=model_path,
-        device=DEVICE.index,
+        device=DEVICEIDX,
         framework='pt',
     )
 
 
 if __name__ == '__main__':
 
-    checkpoint_path = os.path.join("..", "checkpoints")
-
     try:
-        checkpoint_name = sys.argv[1]
+        model_path = os.path.join("..", "checkpoints", sys.argv[1])
     except IndexError:
-        raise IndexError("Please specify a checkpoint.")
-
-    model_path = os.path.join(checkpoint_path, checkpoint_name)
+        warnings.warn("Please specify the checkpoint's name as an argument in the command if any. \nUse 'facebook/bart-large-mnli' from HuggingFace now...")
+        model_path = "facebook/bart-large-mnli"
 
     load_model(model_path)
     app.run()

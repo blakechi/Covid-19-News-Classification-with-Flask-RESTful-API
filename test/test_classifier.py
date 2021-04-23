@@ -47,10 +47,9 @@ if __name__ == "__main__":
             }
         }
     """
-    result = asyncio.run(query_data(server_com.url, gql_query))
+    result = asyncio.run(query_data(server_com.url, gql_query))['Analysis']
 
     news_summary = result[0]  # news_summary == pay_load
-
     req = requests.post(REST_API_URL, json=news_summary).json()
 
     if req["success"]:

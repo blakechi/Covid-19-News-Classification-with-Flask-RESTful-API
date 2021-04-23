@@ -35,7 +35,6 @@ In the training phase, we fine tune the Bart by the augmented data. In the infer
 ## Used Packages
 
 - transformers (Hugging Face)
-- label-studio
 - torch
 - gql (GraphQL)
 - tqdm

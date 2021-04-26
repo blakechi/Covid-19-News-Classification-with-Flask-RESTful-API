@@ -60,7 +60,7 @@ In the training phase, we fine tune the Bart by the augmented data. In the infer
 
 ## Usage
 
-1. Deploy REST API
+1. Deploy REST API \
    Use `facebook/bart-large-mnli` from HuggingFace
    ```bash
    python src/classifier.py

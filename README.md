@@ -28,9 +28,52 @@ In our project, the premise is the news summaries and the hypothesis is the desc
 
 In the training phase, we fine tune the Bart by the augmented data. In the inference phase, we reuse the hypothesis we applied in training for top categories, and for second-level ones, we use their descriptions directly from Oxford Covid-19 Government Response Tracker. We flatten the hierarchical structure of top and second-level categories as normal multi-class classification tasks. However, to reserve the hierarchical structure, we normalize the predictions separately by softmax on top and second-level categories such that the sum of top categories and their respective second-level ones equals 1. Then, like conditional probability, each second-level categories’ predictions is multiplied by their top one.
 
-## Future Works
+## Install
 
-- [ ] Prompt Engineering
+1. Install packages
+
+   > Note: Use python3.8 and update pip in virtual enviroment
+
+   ```bash
+   python3 -m venv env
+   source env/bin/activate
+   pip install --upgrade pip
+   pip install -r requirements.txt
+   ```
+
+2. Create `server.json` for query (Only needed for **Usage 2.** and **3.**)
+
+   - Under the repository directory
+
+     ```bash
+     vim server.json
+     ```
+
+   - Inside server.json
+     ```json
+     {
+       "url": "your/server/url/for/query"
+     }
+     ```
+
+## Usage
+
+1. Deploy REST API
+   ```bash
+   python src/classifier.py
+   ```
+2. Test the API
+   - Go through **1.** first.
+   - Modify the query in `test_classifier.py` or add any news you want as string without using query.
+   - Then:
+     `bash python test/test_classifier.py `
+     > **If**: ModuleNotFoundError: No module named 'gql.transport.aiohttp' \
+     > **Solution**:
+     >
+     > ```bash
+     > pip uninstall gql
+     > pip install --pre gql[all]
+     > ```
 
 ## Used Packages
 
@@ -38,6 +81,10 @@ In the training phase, we fine tune the Bart by the augmented data. In the infer
 - torch
 - gql (GraphQL)
 - tqdm
+
+## Future Works
+
+- [ ] Prompt Engineering
 
 ## Citation
 

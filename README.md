@@ -61,11 +61,11 @@ In the training phase, we fine tune the Bart by the augmented data. In the infer
 ## Usage
 
 1. Deploy REST API \
-   Use `facebook/bart-large-mnli` from HuggingFace
+   Use the pretrained checkpoint - `facebook/bart-large-mnli` from HuggingFace
    ```bash
    python src/classifier.py
    ```
-   or use the checkpoint under `checkpoints`
+   or use yours under `checkpoints`
    ```bash
    python src/classifier.py your_checkpoint_name
    ```

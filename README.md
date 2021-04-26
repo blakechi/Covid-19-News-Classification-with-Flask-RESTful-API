@@ -41,7 +41,9 @@ In the training phase, we fine tune the Bart by the augmented data. In the infer
    pip install -r requirements.txt
    ```
 
-2. Create `server.json` for query (Only needed for **Usage 2.** and **3.**)
+2. Create a folder called `checkpoints` under this repo and put your checkpoint(s) inside it.
+
+3. Create `server.json` for query (Only needed for **Usage 2.** and **3.**)
 
    - Under the repository directory
 
@@ -59,9 +61,15 @@ In the training phase, we fine tune the Bart by the augmented data. In the infer
 ## Usage
 
 1. Deploy REST API
+   Use `facebook/bart-large-mnli` from HuggingFace
    ```bash
    python src/classifier.py
    ```
+   or use the checkpoint under `checkpoints`
+   ```bash
+   python src/classifier.py your_checkpoint_name
+   ```
+   
 2. Test the API
    - Go through **1.** first.
    - Modify the query in `test_classifier.py` or add any news you want as string without using query.

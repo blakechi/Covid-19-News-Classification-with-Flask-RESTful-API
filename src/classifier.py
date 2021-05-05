@@ -68,7 +68,7 @@ def load_model(model_path):
 if __name__ == '__main__':
 
     try:
-        model_path = os.path.join("..", "checkpoints", sys.argv[1])
+        model_path = os.path.join("checkpoints", sys.argv[1])
     except IndexError:
         warnings.warn("Please specify the checkpoint's name as an argument in the command if any. \nUse 'facebook/bart-large-mnli' from HuggingFace now...")
         model_path = "facebook/bart-large-mnli"

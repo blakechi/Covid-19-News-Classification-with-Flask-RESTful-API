@@ -1,4 +1,4 @@
-# Covid-19 News Hierarchical Classification
+# Few-Shot Covid-19 News Hierarchical Classification
 
 ## Introduction
 

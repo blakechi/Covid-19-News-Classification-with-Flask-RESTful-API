@@ -1,4 +1,4 @@
-# Few-shot Covid-19 News Hierarchical Classification
+# Covid-19 News Hierarchical Classification
 
 ## Introduction
 
@@ -20,7 +20,7 @@ To make the labeling efficient, we set up [Label Studio](https://labelstud.io), 
 
 ### News Hierarchical Classification
 
-Due to the ongoing events about Covid-19 everyday, Oxford Covid-19 Government Response Tracker keeps continuously updating their criterions and adding new categories as well. Therefore, instead of training a language model on a fixed set of pre-defined categories for classification that loses flexibility when new categories added in the future, we focus on models that perform outstandingly in natural language inference (NLI) field. In the NLI field, we ask models to predict the similarity of semantic meaning in two sentences called premise (input data) and hypothesis (categories for classification) and output the similarity into three categories: entailment, neutral, and contraction. Framing classification in this way has multiple advantages: i) Categories for classification are now flexible by predicting the similarity of input texts and given categories, ii) the classification is not limited to domain specific data, and iii) we now can only label a few or even no data for downstream tasks once our language model learns semantic meanings in language, also known as few-shot or zero-shot learning.
+Due to the ongoing events about Covid-19 everyday, Oxford Covid-19 Government Response Tracker keeps continuously updating their criterions and adding new categories as well. Therefore, instead of training a language model on a fixed set of pre-defined categories for classification that loses flexibility when new categories added in the future, we focus on models that perform outstandingly in natural language inference (NLI) field. In the NLI field, we ask models to predict the similarity of semantic meaning in two sentences called premise (input data) and hypothesis (categories for classification) and output the similarity into three categories: entailment, neutral, and contraction. Framing classification in this way has two advantages: i) Categories for classification are now flexible by predicting the similarity of input texts and given categories, ii) the classification is not limited to domain specific data.
 
 Since our objective is to predict the semantic similarity between two sentences, we can easily augment our labeled data by i) choosing multiple different descriptions (hypothesis) for categories to generate positive data pairs (entailment) and ii) randomly pairing the data with other categories’ descriptions to generate negative ones (contraction).
 
